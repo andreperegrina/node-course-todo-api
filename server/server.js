@@ -1,6 +1,5 @@
 require('../config/config');
 
-console.log(`env ******* ${env}`);
 
 const _ = require('lodash');
 const express = require('express');
@@ -89,6 +88,21 @@ app.patch('/todos/:id', (req, res) => {
         res.send({todo});
     }).catch((e) => {
         res.status(400).send();
+    });
+});
+
+app.post('/users', (req, res) => {
+    var id = req.params.id;
+    var body = _.pick(req.body, ['email', 'password']);
+    var user = new User({
+        email: body.email,
+        password: body.password
+    });
+
+    user.save().then((todo) => {
+        res.send(todo);
+    }).catch((e) => {
+        res.status(400).send(e);
     });
 });
 
