@@ -58,6 +58,7 @@ typings/
 
 # dotenv environment variables file
 .env
+server/config/config.json
 
 # Idea
 *.iml
